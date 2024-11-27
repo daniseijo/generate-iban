@@ -1,5 +1,5 @@
-import { Button } from '@/components/ui/button'
 import { ModeToggle } from './component/ModeToggle'
+import { IbanCard } from './component/IbanCard'
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
         <ModeToggle className="m-4" />
       </header>
       <main className="flex flex-col items-center justify-center">
-        <Button className="mt-16">Click me</Button>
+        <IbanCard className="mt-8" />
       </main>
     </div>
   )
