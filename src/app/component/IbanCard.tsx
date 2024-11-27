@@ -20,7 +20,7 @@ export function IbanCard({ className }: IbanCardProps) {
   const [iban, setIban] = useState('')
 
   useEffect(() => {
-    if (ccc.length === 18 && !ccc.includes('X')) {
+    if (ccc.length === 18 && Number.isInteger(Number(ccc)) && !ccc.includes('X')) {
       const iban = spanishAccountNumberToIBAN(ccc.slice(0, 4), ccc.slice(4, 8), ccc.slice(8, 18))
       setIban(`${iban.slice(0, 4)} ${iban.slice(4, 8)} ${iban.slice(8, 12)} ${iban.slice(12, 14)} ${iban.slice(14)}`)
     } else {
