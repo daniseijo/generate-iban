@@ -6,13 +6,15 @@ import { CheckIcon, ClipboardIcon } from 'lucide-react'
 
 export function CopyButton({ text }: Readonly<{ text: string }>) {
   const [copied, setCopied] = useState(false)
+
   const copy = useCallback(async () => {
     await navigator.clipboard.writeText(text.replaceAll(' ', ''))
     setCopied(true)
     setTimeout(() => setCopied(false), 2000)
   }, [text])
+
   return (
-    <Button onClick={copy}>
+    <Button onClick={copy} className={`${copied && 'bg-green-500'}`}>
       {copied ? (
         <>
           <CheckIcon /> Copiado
