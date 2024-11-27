@@ -14,7 +14,7 @@ export function CopyButton({ text }: Readonly<{ text: string }>) {
   }, [text])
 
   return (
-    <Button onClick={copy} className={`${copied && 'bg-green-500'}`}>
+    <Button onClick={copy} className={`${copied && 'bg-green-400 hover:bg-green-400'}`}>
       {copied ? (
         <>
           <CheckIcon /> Copiado
