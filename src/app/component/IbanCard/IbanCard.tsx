@@ -2,17 +2,13 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
-import { cn } from '@/lib/utils'
 import { Separator } from '@/components/ui/separator'
 import { CopyButton } from './CopyButton'
 import { useEffect, useState } from 'react'
 import { spanishAccountNumberToIBAN } from '@/lib/cccToIban'
+import { formatIban } from '@/lib/utils'
 
-export type IbanCardProps = {
-  className?: string
-}
-
-export function IbanCard({ className }: IbanCardProps) {
+export function IbanCard() {
   const [bank, setBank] = useState('')
   const [entity, setEntity] = useState('')
   const [account, setAccount] = useState('')
@@ -22,7 +18,7 @@ export function IbanCard({ className }: IbanCardProps) {
   useEffect(() => {
     if (ccc.length === 18 && Number.isInteger(Number(ccc)) && !ccc.includes('X')) {
       const iban = spanishAccountNumberToIBAN(ccc.slice(0, 4), ccc.slice(4, 8), ccc.slice(8, 18))
-      setIban(`${iban.slice(0, 4)} ${iban.slice(4, 8)} ${iban.slice(8, 12)} ${iban.slice(12, 14)} ${iban.slice(14)}`)
+      setIban(formatIban(iban))
     } else {
       setIban('')
     }
@@ -51,7 +47,7 @@ export function IbanCard({ className }: IbanCardProps) {
   }
 
   return (
-    <Card className={cn('w-96', className)}>
+    <Card>
       <CardHeader>
         <CardTitle>Generador de IBAN</CardTitle>
         <CardDescription>
