@@ -3,8 +3,14 @@
 import { useCallback, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { CheckIcon, ClipboardIcon } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
-export function CopyButton({ text }: Readonly<{ text: string }>) {
+type CopyButtonProps = {
+  text: string
+  className?: string
+}
+
+export function CopyButton({ text, className }: CopyButtonProps) {
   const [copied, setCopied] = useState(false)
 
   const copy = useCallback(async () => {
@@ -14,14 +20,14 @@ export function CopyButton({ text }: Readonly<{ text: string }>) {
   }, [text])
 
   return (
-    <Button onClick={copy} className={`${copied && 'bg-green-400 hover:bg-green-400'}`}>
+    <Button onClick={copy} className={cn(`${copied && 'bg-green-400 hover:bg-green-400'}`, className)}>
       {copied ? (
         <>
           <CheckIcon /> Copiado
         </>
       ) : (
         <>
-          <ClipboardIcon /> Copiar al portapapeles
+          <ClipboardIcon /> Copiar
         </>
       )}
     </Button>

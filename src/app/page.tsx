@@ -1,5 +1,5 @@
 import { ModeToggle } from './component/ModeToggle'
-import { IbanCard } from './component/IbanCard'
+import { GeneratorTabs } from './component/GeneratorTabs'
 
 export default function Home() {
   return (
@@ -8,7 +8,7 @@ export default function Home() {
         <ModeToggle className="m-4" />
       </header>
       <main className="flex flex-col items-center justify-center">
-        <IbanCard className="mt-8" />
+        <GeneratorTabs className="mt-8 mb-8" />
       </main>
     </div>
   )
