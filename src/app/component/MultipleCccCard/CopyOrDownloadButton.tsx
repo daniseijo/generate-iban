@@ -23,8 +23,8 @@ export function CopyOrDownloadButton({ text }: Readonly<{ text: string }>) {
       <Separator orientation="vertical" />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button className="border-l-0 rounded-l-none w-9 active:bg-primary/75">
-            <ChevronDownIcon className="w-9 h-9" />
+          <Button className="w-9 rounded-l-none border-l-0 active:bg-primary/75">
+            <ChevronDownIcon className="h-9 w-9" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>

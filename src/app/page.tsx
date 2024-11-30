@@ -8,7 +8,7 @@ export default function Home() {
         <ModeToggle className="m-4" />
       </header>
       <main className="flex flex-col items-center justify-center">
-        <GeneratorTabs className="mt-8 mb-8" />
+        <GeneratorTabs className="mb-8 mt-8" />
       </main>
     </div>
   )
