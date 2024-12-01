@@ -1,11 +1,12 @@
 'use client'
 
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { useState } from 'react'
 import { formatIban } from '@/lib/utils'
-import { GenerateEditFooter } from './GenerateEditFooter'
 import { spanishCCCToIBAN } from '@/lib/cccToIban'
+import { Button } from '@/components/ui/button'
+import { CopyOrDownloadButton } from './CopyOrDownloadButton'
 
 export function MultipleCccCard() {
   const [cccList, setCccList] = useState<string[]>([])
@@ -71,19 +72,28 @@ export function MultipleCccCard() {
         ) : (
           <div>
             {ibanList.map((iban, index) => (
-              <div key={index} className="mb-1 text-center text-lg font-semibold">
+              <p key={index} className="mb-1 text-center text-lg font-semibold">
                 {iban}
-              </div>
+              </p>
             ))}
           </div>
         )}
       </CardContent>
-      <GenerateEditFooter
-        editing={editing}
-        setEditing={setEditing}
-        handleGenerate={handleGenerate}
-        text={ibanList.join('\n')}
-      />
+      <CardFooter>
+        {editing ? (
+          <div className="flex w-full justify-end">
+            <Button onClick={handleGenerate}>Generar</Button>
+          </div>
+        ) : (
+          <div className="flex w-full justify-between">
+            <Button variant="outline" onClick={() => setEditing(true)}>
+              Editar
+            </Button>
+
+            <CopyOrDownloadButton text={ibanList.join('\n')} />
+          </div>
+        )}
+      </CardFooter>
     </Card>
   )
 }
