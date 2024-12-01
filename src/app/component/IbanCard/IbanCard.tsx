@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input'
 import { Separator } from '@/components/ui/separator'
 import { CopyButton } from './CopyButton'
 import { useEffect, useState } from 'react'
-import { spanishAccountNumberToIBAN } from '@/lib/cccToIban'
+import { spanishCCCToIBAN } from '@/lib/cccToIban'
 import { formatIban } from '@/lib/utils'
 
 export function IbanCard() {
@@ -17,7 +17,7 @@ export function IbanCard() {
 
   useEffect(() => {
     if (ccc.length === 18 && Number.isInteger(Number(ccc)) && !ccc.includes('X')) {
-      const iban = spanishAccountNumberToIBAN(ccc.slice(0, 4), ccc.slice(4, 8), ccc.slice(8, 18))
+      const iban = spanishCCCToIBAN(ccc)
       setIban(formatIban(iban))
     } else {
       setIban('')
@@ -58,13 +58,13 @@ export function IbanCard() {
         <div className="flex flex-col gap-4">
           <div className="text-sm">Pega aquí los datos de tu cuenta:</div>
           <div className="flex w-full items-center gap-2">
-            <div className="basis-1/3 flex flex-col space-y-1">
+            <div className="flex basis-1/3 flex-col space-y-1">
               <Input maxLength={4} id="bank" placeholder="Banco" value={bank} onChange={handleBankChange} />
             </div>
-            <div className="basis-1/3 flex flex-col space-y-1">
+            <div className="flex basis-1/3 flex-col space-y-1">
               <Input maxLength={4} id="entity" placeholder="Entidad" value={entity} onChange={handleEntityChange} />
             </div>
-            <div className="basis-2/3 flex flex-col space-y-1">
+            <div className="flex basis-2/3 flex-col space-y-1">
               <Input
                 maxLength={10}
                 id="account"

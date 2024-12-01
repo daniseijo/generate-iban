@@ -1,12 +1,12 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { useState } from 'react'
-import { CopyOrDownloadButton } from './CopyOrDownloadButton'
-import { spanishAccountNumberToIBAN } from '@/lib/cccToIban'
 import { formatIban } from '@/lib/utils'
+import { spanishCCCToIBAN } from '@/lib/cccToIban'
+import { Button } from '@/components/ui/button'
+import { CopyOrDownloadButton } from './CopyOrDownloadButton'
 
 export function MultipleCccCard() {
   const [cccList, setCccList] = useState<string[]>([])
@@ -34,7 +34,7 @@ export function MultipleCccCard() {
       }
 
       try {
-        const iban = spanishAccountNumberToIBAN(ccc.slice(0, 4), ccc.slice(4, 8), ccc.slice(8, 18))
+        const iban = spanishCCCToIBAN(ccc)
         ibanList.push(formatIban(iban))
       } catch (error) {
         console.error(error)
@@ -67,14 +67,14 @@ export function MultipleCccCard() {
               placeholder="Pega aquí tantos CCC como quieras, uno por línea."
               rows={7}
             />
-            {error && <p className="text-destructive text-sm ">Cada CCC debe tener 18 dígitos.</p>}
+            {error && <p className="text-sm text-destructive">Cada CCC debe tener 18 dígitos.</p>}
           </>
         ) : (
           <div>
             {ibanList.map((iban, index) => (
-              <div key={index} className="text-center text-lg font-semibold mb-1">
+              <p key={index} className="mb-1 text-center text-lg font-semibold">
                 {iban}
-              </div>
+              </p>
             ))}
           </div>
         )}

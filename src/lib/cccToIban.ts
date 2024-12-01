@@ -1,4 +1,18 @@
 /**
+ * Generates IBAN control digits from only the data from the entity, office and account number as a ccc.
+ *
+ * @param ccc 18 digits with all account info.
+ * @returns the complete IBAN.
+ */
+export function spanishCCCToIBAN(ccc: string) {
+  if (ccc.length !== 18) {
+    throw new Error('CCC must have 18 characters')
+  }
+
+  return spanishAccountNumberToIBAN(ccc.slice(0, 4), ccc.slice(4, 8), ccc.slice(8, 18))
+}
+
+/**
  * Generates IBAN control digits from only the data from the entity, office and account number.
  *
  * @param entityKey 4 digits entity number as string.
