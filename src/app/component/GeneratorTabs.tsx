@@ -10,7 +10,7 @@ export type GeneratorTabsProps = {
 
 export function GeneratorTabs({ className }: GeneratorTabsProps) {
   return (
-    <Tabs defaultValue="norma43" className={cn('w-96', className)}>
+    <Tabs defaultValue="one-ccc" className={cn('w-96', className)}>
       <TabsList className="grid w-full grid-cols-3">
         <TabsTrigger value="one-ccc">IBAN</TabsTrigger>
         <TabsTrigger value="multiple-ccc">Múltiples CCC</TabsTrigger>
