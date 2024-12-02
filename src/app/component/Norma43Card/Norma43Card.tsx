@@ -57,7 +57,9 @@ export function Norma43Card() {
           <div>
             {Object.entries(filesRecord).map(([key, ibanList]) => (
               <Card key={key} className="mb-4">
-                <CardHeader className="px-4 py-2 text-center font-semibold">{key}</CardHeader>
+                <CardHeader className="px-4 py-2 text-center font-semibold">
+                  <div className="truncate">{key}</div>
+                </CardHeader>
                 <Separator />
                 <CardContent className="mt-4 space-y-1">
                   {ibanList.length === 0 ? (
